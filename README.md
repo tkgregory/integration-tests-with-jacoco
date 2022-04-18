@@ -1,41 +1,11 @@
-Demonstrate an issue with test suites & Jacoco reports
+Demonstrates how to publish unit and integration test Jacoco code coverage data to SonarQube.
+## Running
 
-## Setup
+Start SonarQube with `docker-compose up`. View your SonarQube server at [localhost:9000](http://localhost:9000).
 
-This project has tests and integration tests in separate source sets configured with the JVM Test Suites plugin.
+Run `./gradlew sonarqube` which:
 
-## Observation 1
-Run `./gradlew jacocoTestReport` and see 2 files:
-
-* *build/jacoco/test.exec*
-* *build/jacoco/integrationTest.exec*
-
-How does the *integrationTest.exec* get generated since there is only a single *jacocoTestReport* task?
-
-## Observation 2
-This project configures XML reports with `xml.required = true`.
-
-There is a *build/reports/jacoco/test/jacocoTestReport.xml* but no *build/reports/jacoco/integrationTest/jacocoTestReport.xml*.
-
-Why?
-
-## Observation 3
-
-When I try to configure *jacocoTestReport* task to include integration test data:
-
-```groovy
-jacocoTestReport {
-    executionData tasks.named('integrationTest')
-    // other stuff
-}
-```
-
-When I run `./gradlew  jacocoTestReport` it fails with error:
-
-> > Unable to read execution data file C:\workspace\sonarqube-jacoco-code-coverage\build\test-results\integrationTest\binary
-
-Does this directory exist? Sure does!
-
-Stacktrace shows:
-
-> Caused by: java.nio.file.AccessDeniedException: C:\workspace\integration-tests-with-jacoco-issue\build\test-results\integrationTest\binary
+1. Compiles code and runs unit and integration tests
+2. Generates test execution data [test.exec](build/jacoco/test.exec) and [integrationTest.exec](build/jacoco/integrationTest.exec)
+3. Generates a combined Jacoco XML test report via *jacocoTestReport* task
+4. Sends code coverage data to SonarQube
