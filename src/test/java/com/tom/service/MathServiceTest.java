@@ -1,15 +1,15 @@
 package com.tom.service;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsEqual.equalTo;
 
 public class MathServiceTest {
     private MathService mathService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         mathService = new MathService();
     }

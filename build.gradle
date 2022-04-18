@@ -1,19 +1,23 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'org.sonarqube' version '3.3'
 }
 
 repositories {
     mavenCentral()
 }
 
+dependencies {
+    testImplementation("org.hamcrest:hamcrest-library:2.2")
+}
+
 testing {
     suites {
         test {
-            useJUnit()
+            useJUnitJupiter()
         }
         integrationTest(JvmTestSuite) {
-            useJUnit()
             dependencies {
                 implementation project
             }
@@ -26,7 +30,7 @@ tasks.named('check').configure {
 }
 
 jacocoTestReport {
-//    executionData tasks.named('integrationTest')
+    executionData tasks.integrationTest
     reports {
         xml.required = true
     }
@@ -34,4 +38,13 @@ jacocoTestReport {
 
 jacocoTestReport {
     dependsOn test, integrationTest
+}
+
+sonarqube {
+    properties {
+        property 'sonar.host.url', 'http://localhost:9000'
+    }
+}
+tasks.named('sonarqube').configure {
+    dependsOn jacocoTestReport
 }
