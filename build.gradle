@@ -30,13 +30,10 @@ tasks.named('check').configure {
 }
 
 jacocoTestReport {
-    executionData tasks.integrationTest
+    executionData integrationTest
     reports {
         xml.required = true
     }
-}
-
-jacocoTestReport {
     dependsOn test, integrationTest
 }
 
@@ -45,6 +42,7 @@ sonarqube {
         property 'sonar.host.url', 'http://localhost:9000'
     }
 }
+
 tasks.named('sonarqube').configure {
     dependsOn jacocoTestReport
 }
