@@ -1,3 +1,5 @@
+[![CI](https://github.com/tkgregory/integration-tests-with-jacoco/actions/workflows/gradle.yml/badge.svg)](https://github.com/tkgregory/integration-tests-with-jacoco/actions/workflows/gradle.yml)
+
 Demonstrates how to publish unit and integration test Jacoco code coverage data to SonarQube.
 
 See the accompanying article *[Integration Test Code Coverage with SonarQube and Jacoco](https://tomgregory.com/integration-test-code-coverage-with-sonarqube-and-jacoco)* for full details.
