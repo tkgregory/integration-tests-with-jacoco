@@ -30,21 +30,31 @@ tasks.named('check').configure {
 }
 
 jacocoTestReport {
-    executionData tasks.integrationTest
     reports {
         xml.required = true
     }
 }
 
 jacocoTestReport {
-    dependsOn test, integrationTest
+    dependsOn test
 }
 
 sonarqube {
     properties {
         property 'sonar.host.url', 'http://localhost:9000'
+        property 'sonar.coverage.jacoco.xmlReportPaths', "$buildDir/reports/jacoco/test/jacocoTestReport.xml,$buildDir/reports/jacoco/jacocoIntegrationTestReport/jacocoIntegrationTestReport.xml"
     }
 }
+
+tasks.register('jacocoIntegrationTestReport', JacocoReport) {
+    reports {
+        xml.required = true
+    }
+    sourceSets sourceSets.main
+    executionData tasks.integrationTest
+    dependsOn tasks.integrationTest
+}
+
 tasks.named('sonarqube').configure {
-    dependsOn jacocoTestReport
+    dependsOn jacocoTestReport, jacocoIntegrationTestReport
 }
