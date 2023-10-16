@@ -2,9 +2,9 @@
 
 Demonstrates how to publish unit and integration test Jacoco code coverage data to SonarQube.
 
-See the accompanying article *[Integration Test Code Coverage with SonarQube and Jacoco](https://tomgregory.com/integration-test-code-coverage-with-sonarqube-and-jacoco)* for full details.
+See the accompanying article *[Integration Test Code Coverage with SonarQube and Jacoco](https://gradlehero.com/integration-test-code-coverage-with-sonarqube-and-jacoco)* for full details.
 
-[<img src="Integration-Test-Code-Coverage-with-SonarQube-and-Jacoco.png" width="500" alt="Integration Test Code Coverage with SonarQube and Jacoco"/>](https://tomgregory.com/integration-test-code-coverage-with-sonarqube-and-jacoco)
+[<img src="Integration-Test-Code-Coverage-with-SonarQube-and-Jacoco.png" width="500" alt="Integration Test Code Coverage with SonarQube and Jacoco"/>](https://gradlehero.com/integration-test-code-coverage-with-sonarqube-and-jacoco)
 
 ## Running
 
